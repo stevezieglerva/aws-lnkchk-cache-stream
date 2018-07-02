@@ -20,7 +20,7 @@ def lambda_handler(event, context):
         image = "NewImage"
         if event_name == "REMOVE":
             image = "OldImage"
-        http_response = record["dynamodb"][image]["http_response"]["S"]
+        http_response = record["dynamodb"][image]["http_result"]["S"]
         print("\t" + event_name + " " + url)
         es_event = {"event" : event_name, "url" : url, "http_response" : http_response}
         es.log_event(es_event)
